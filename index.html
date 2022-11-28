@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center clock"> <span class="hour">00</span>:<span class="min">00</span>:<span class="sec">00</span>:<span class="micSec">00</span></h1>
+<script>
+    let hourElement = document.querySelector('.hour');
+    let minElement = document.querySelector('.min');
+    let secElement = document.querySelector('.sec');
+    let micSecElement = document.querySelector('.micSec');
+    let  number = 0; 
+    $time = setInterval(()=>{
+        let miliSecond = number++;
+        let second =  parseInt(miliSecond/100);
+        miliSecond %= 100;
+        let minute =  parseInt(second/60);
+        second %= 100;
+        let hours =  parseInt(minute/60); 
+        minute %= 100;
+        micSecElement.innerHTML =numberFormater(miliSecond) ;
+        secElement.innerHTML =numberFormater(second);
+        minElement.innerHTML = numberFormater(minute);
+        hourElement.innerHTML = numberFormater(hours); 
+    },10);
+
+    
+
+    function numberFormater(number,digit=2){
+        let  length = number.toString().length;
+        if (length < digit) {
+            let prefix ="";  
+            for (let i = 0; i <(digit - length); i++) { 
+               prefix +="0";   
+            }
+            return prefix + number;
+        }
+        return number;
+    }
+</script>
+</body>
+</html>
